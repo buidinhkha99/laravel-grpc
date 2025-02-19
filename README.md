@@ -37,4 +37,9 @@ Cuối cùng bạn tìm file php.ini và thêm dòng này vào extension=grpc.so
 ✅ Máy trung bình (CPU 4 core, RAM 8GB): ~10-20 phút
 ✅ Máy yếu (CPU 2 core, RAM < 4GB): ~30 phút hoặc lâu hơn
 
-Bây giờ chúng ta chạy command: ./rr-grpc -c .rr.yaml serve -v -d là xong 
+Bây giờ chúng ta chạy command: ./rr-grpc -c .rr.yaml serve -v -d là xong
+
+Tham khảo:
+https://viblo.asia/p/bien-ung-dung-laravel-cua-ban-tro-nen-phuc-tap-hon-voi-grpc-gGJ59GMpZX2
+
+https://viblo.asia/p/bien-ung-dung-laravel-cua-ban-tro-nen-phuc-tap-hon-voi-grpc-phan-2-gGJ59G6jZX2
