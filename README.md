@@ -7,58 +7,34 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Cài đặt grpc:
+Nếu chưa có package pear  thì cần cài đặt trước
+sudo apt install php7.4-dev php-pear
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Hãy cài một số extension cần thiết của php:
+sudo apt install -y php7.4-dev php-pear autoconf automake libtool make g++ unzip
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sau đó caì đặt grpc:
+sudo pecl install grpc
 
-## Learning Laravel
+Với máy có nhiều phiên bản php thì lên truyền php version để cài lại
+sudo pecl -d php_suffix=7.4 install grpc
+Nhớ là xóa bản grpc cũ trước khi cài lại nó
+sudo pecl uninstall grpc
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Với php phiên bản 7.0 thì grpc ko hỗ trợ, còn mỗi phiên bản php khác thì sẽ có phiên bản grpc phù hợp để triển khai
+7.4 => grpc-1.48.0
 
-## Laravel Sponsors
+cài đặt grpc: sudo pecl install grpc-1.48.0
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Cuối cùng bạn tìm file php.ini và thêm dòng này vào extension=grpc.so
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+=> THời gian build có thể mất nhiều thời gian, check quá tình build xem có lỗi ko nhé
+✅ Máy mạnh (CPU 8 core, RAM 16GB+): ~5-10 phút
+✅ Máy trung bình (CPU 4 core, RAM 8GB): ~10-20 phút
+✅ Máy yếu (CPU 2 core, RAM < 4GB): ~30 phút hoặc lâu hơn
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Bây giờ chúng ta chạy command: ./rr-grpc -c .rr.yaml serve -v -d là xong 

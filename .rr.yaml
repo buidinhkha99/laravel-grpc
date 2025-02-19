@@ -1,0 +1,10 @@
+grpc:
+  listen: "tcp://127.0.0.1:9001"  # Define host cho service
+  reflection: true
+  proto: "protos/auth.proto"      # Define rõ file proto ở đâu
+  workers:
+    command: "php worker.php"      # Start worker từ file worker vừa tạo ở trên
+    pool:                          # Cấu hình số lượng worker và số lượng job tối đa
+      maxJobs: 1
+      numWorkers: 1
+

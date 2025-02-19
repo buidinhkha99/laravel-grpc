@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Grpc\Contracts\Validator;
+use App\Grpc\Controllers\AuthController;
+use App\Grpc\LaravelValidator;
 use Illuminate\Support\ServiceProvider;
+use Protobuf\Identity\AuthServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind(AuthServiceInterface::class, AuthController::class);
+        $this->app->bind(Validator::class, LaravelValidator::class);
     }
 }
