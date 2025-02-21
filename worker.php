@@ -2,6 +2,7 @@
 
 use Spiral\RoadRunner\Worker;
 use Spiral\Goridge\StreamRelay;
+//use Spiral\RoadRunner\GRPC\Reflection\ReflectionService;
 
 ini_set('display_errors', 'stderr');
 
@@ -19,10 +20,11 @@ $app->singleton(
     App\Grpc\LaravelServiceInvoker::class
 );
 
-$kernel = $app->make(App\Grpc\Contracts\Kernel::class);
+$server = $app->make(App\Grpc\Contracts\Kernel::class);
 
-$kernel->registerService(Protobuf\Identity\AuthServiceInterface::class);
+$server->registerService(Protobuf\Identity\AuthServiceInterface::class);
+$server->registerService(ReflectionService::create($server));
 
 $w = new Worker(new StreamRelay(STDIN, STDOUT));
 
-$kernel->serve($w);
+$server->serve($w);
